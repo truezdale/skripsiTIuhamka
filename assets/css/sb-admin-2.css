@@ -64,9 +64,9 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #858796;
+  background-color: #ff0000;
   text-align: left;
-  background-color: #fff;
+  background-color: rgb(0, 47, 68);
 }
 
 [tabindex="-1"]:focus {
@@ -159,13 +159,13 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #ff00f2;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #224abe;
+  color: #ff0000;
   text-decoration: underline;
 }
 
@@ -9948,7 +9948,7 @@ a:focus {
 }
 
 .topbar #sidebarToggleTop:active {
-  background-color: #dddfeb;
+  background-color: #0026ff;
 }
 
 .topbar .navbar-search {
@@ -10063,15 +10063,15 @@ a:focus {
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link {
-  color: #d1d3e2;
+  color: #ff0015;
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
-  color: #b7b9cc;
+  color: #ff009d;
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link:active {
-  color: #858796;
+  color: #00052b;
 }
 
 .sidebar {
@@ -10151,17 +10151,17 @@ a:focus {
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:hover,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item:hover {
-  background-color: #eaecf4;
+  background-color: #0033ff;
 }
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:active,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item:active {
-  background-color: #dddfeb;
+  background-color: #0026fd;
 }
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item.active,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item.active {
-  color: #4e73df;
+  color: #0040ff;
   font-weight: 700;
 }
 
@@ -10831,8 +10831,8 @@ form.user .btn-user {
   left: 2px;
   text-shadow: -1px 0 #e74a3b;
   top: 0;
-  color: #5a5c69;
-  background: #f8f9fc;
+  color: #2340ff;
+  background: #0040ff;
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-anim 2s infinite linear alternate-reverse;

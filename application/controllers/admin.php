@@ -15,6 +15,7 @@ class admin extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
@@ -83,8 +84,9 @@ class admin extends CI_Controller
         $data['title'] = 'Lantai 1 FT Uhamka';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $this->room->habiswaktu();
 
-        $data1['room'] = $this->room->tampil_room()->result();
+        $data1['room'] = $this->room->tampil_room_lantai1()->result();
         $data['role'] = $this->db->get('user_booking')->result_array();
 
         $this->load->view('templates/header', $data);
@@ -99,8 +101,9 @@ class admin extends CI_Controller
         $data['title'] = 'Lantai 2 FT Uhamka';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $this->room->habiswaktu();
 
-        $data2['room'] = $this->room->tampil_room()->result();
+        $data2['room'] = $this->room->tampil_room_lantai2()->result();
         $data['role'] = $this->db->get('user_booking')->result_array();
 
         $this->load->view('templates/header', $data);
@@ -114,8 +117,9 @@ class admin extends CI_Controller
         $data['title'] = 'Lantai 3 FT Uhamka';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $this->room->habiswaktu();
 
-        $data3['room'] = $this->room->tampil_room()->result();
+        $data3['room'] = $this->room->tampil_room_lantai3()->result();
         $data['role'] = $this->db->get('user_booking')->result_array();
 
         $this->load->view('templates/header', $data);
@@ -130,9 +134,11 @@ class admin extends CI_Controller
         $data['title'] = 'Lantai 4 FT Uhamka';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
+        $this->room->habiswaktu();
 
-        $data4['room'] = $this->room->tampil_room()->result();
+        $data4['room'] = $this->room->tampil_room_lantai4()->result();
         $data['role'] = $this->db->get('user_booking')->result_array();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -153,6 +159,18 @@ class admin extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('menu/add-booking', $data5);
+        $this->load->view('templates/footer');
+    }
+    function tambahruangan()
+    {
+        $data['title'] = 'Tambah Booking';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/tambahruangan');
         $this->load->view('templates/footer');
     }
 
@@ -176,5 +194,37 @@ class admin extends CI_Controller
 
         $this->room->booking_room_proses($where, $data, 'user_booking');
         redirect(base_url('admin/lantai1'));
+    }
+    function prosesruang()
+    {
+        $m_booking_start  = $this->input->post('m_booking_start');
+        $m_booking_end    = $this->input->post('m_booking_end');
+        $m_booking_agenda = $this->input->post('m_booking_agenda');
+        $m_booking_PIC    = $this->input->post('m_booking_PIC');
+        $m_booking_room_name    = $this->input->post('m_booking_room_name');
+        $m_lantai    = $this->input->post('lantai');
+
+        $data = array(
+            'm_booking_start'   => $m_booking_start,
+            'm_booking_end'     => $m_booking_end,
+            'm_booking_agenda'  => $m_booking_agenda,
+            'm_booking_PIC'     => $m_booking_PIC,
+            'm_booking_room_name'     => $m_booking_room_name,
+            'lantai'     => $m_lantai
+        );
+        $this->room->prosesruang($data, 'user_booking');
+        redirect(base_url('admin/lantai' . $m_lantai));
+    }
+    function habiswaktu()
+    {
+        $data['title'] = 'Delete Otomatis';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/lantai');
+        $this->load->view('templates/footer');
     }
 }

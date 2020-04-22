@@ -9,10 +9,12 @@
     </center>
     <center><img src="<?= base_url('assets/img/profile/default.png') ?>" alt=""></center>
 
+    <div class="row">
 
 
-</div>
-<!-- /.container-fluid -->
+
+    </div>
+    <!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->

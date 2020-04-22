@@ -11,6 +11,7 @@
                             <ol class="breadcrumb float-sm-left">
                                 <li class="breadcrumb-item"><a href="<?php echo site_url('admin/lantai1') ?>">Home</a></li>
                                 <li class="breadcrumb-item active">Booking Room</li>
+                                <li class="breadcrumb-item active"><a href="<?php echo site_url('admin/lantai1') ?>">Hapus</a></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -19,7 +20,7 @@
             <!-- Main content -->
             <section class="content">
                 <div class="row">
-                    <div class="col-sm-8">
+                    <div class="col-sm-7">
                         <div class="card card-primary">
                             <?php foreach ($data as $row) { ?>
                                 <div class="card-header">
@@ -27,11 +28,11 @@
                                 </div>
                                 <form method="POST" action="<?php echo base_url('admin/booking_room_proses/') . $row->m_booking_id; ?>">
                                     <div class="card-body">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-5">
                                             <label for="exampleInputEmail1">Jam Mulai</label>
                                             <input type="datetime-local" name="m_booking_start" class="form-control">
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-5">
                                             <label for="exampleInputPassword1">Jam Selesai</label>
                                             <input type="datetime-local" name="m_booking_end" class="form-control">
                                         </div>
@@ -40,7 +41,7 @@
                                             <input type="text" name="m_booking_agenda" class="form-control">
                                         </div>
                                         <div class="col-sm-8">
-                                            <label for="exampleInputPassword1">PIC</label>
+                                            <label for="exampleInputPassword1">Penanggung Jawab</label>
                                             <input type="text" name="m_booking_PIC" class="form-control">
                                         </div>
                                     </div>
@@ -52,11 +53,11 @@
                             <?php } ?>
                         </div>
                     </div><!-- /.container-fluid -->
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                         <div class="card card-primary">
                             <?php foreach ($data as $row) { ?>
                                 <div class="card-header">
-                                    <h3 class="card-title">Previous User</h3>
+                                    <h3 class="card-title">Keterangan</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="col-sm-12">
@@ -77,7 +78,7 @@
                                                 <td><?php echo $row->m_booking_agenda; ?></td>
                                             </tr>
                                             <tr>
-                                                <td><b>PIC</b></td>
+                                                <td><b>Penanggung Jawab</b></td>
                                                 <td> : </td>
                                                 <td><?php echo $row->m_booking_PIC; ?></td>
                                             </tr>
@@ -88,8 +89,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.container-fluid -->
-            </section>
+        </div>
+        <!-- /.container-fluid -->
+
+        </section>
 </body>
 
 </html>

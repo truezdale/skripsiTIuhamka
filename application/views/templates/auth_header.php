@@ -22,4 +22,4 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background-color: #32a8a6">
