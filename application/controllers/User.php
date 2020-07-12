@@ -7,6 +7,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('roomuser');
     }
     public function index()
     {
@@ -118,4 +119,96 @@ class User extends CI_Controller
             }
         }
     }
+    public function lantai1()
+    {
+        $data['title'] = 'Lantai 1 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $yangdicari = $this->input->post('yangdicari');
+        $data['roomuser'] = $this->roomuser->tampil_room_lantai1()->result();
+        if ($yangdicari != null) {
+            $data['roomuser'] = $this->roomuser->cari($yangdicari);
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai1', $data);
+        $this->load->view('templates/footer');
+    }
+    public function lantai2()
+    {
+        $data['title'] = 'Lantai 2 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $yangdicari = $this->input->post('yangdicari');
+        $data['roomuser'] = $this->roomuser->tampil_room_lantai2()->result();
+        if ($yangdicari != null) {
+            $data['roomuser'] = $this->roomuser->cari($yangdicari);
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai2', $data);
+        $this->load->view('templates/footer');
+    }
+    public function lantai3()
+    {
+        $data['title'] = 'Lantai 3 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $yangdicari = $this->input->post('yangdicari');
+        $data['roomuser'] = $this->roomuser->tampil_room_lantai3()->result();
+        if ($yangdicari != null) {
+            $data['roomuser'] = $this->roomuser->cari($yangdicari);
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai3', $data);
+        $this->load->view('templates/footer');
+    }
+    public function lantai4()
+    {
+        $data['title'] = 'Lantai 4 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $yangdicari = $this->input->post('yangdicari');
+        $data['roomuser'] = $this->roomuser->tampil_room_lantai4()->result();
+        if ($yangdicari != null) {
+            $data['roomuser'] = $this->roomuser->cari($yangdicari);
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai4', $data);
+        $this->load->view('templates/footer');
+    }
+    /*function habiswaktu()
+    {
+        $data['title'] = 'Delete Otomatis';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai');
+        $this->load->view('templates/footer');
+    }*/
 }

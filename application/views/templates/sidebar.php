@@ -21,7 +21,7 @@
             <div class="sidebar-brand-icon rotate-n-0">
                 <i class="fas fa-user-tie"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">FT Uhamka Admin</div>
+            <div class="sidebar-brand-text mx-3">FT Uhamka</div>
         </a>
 
         <!-- Divider -->
