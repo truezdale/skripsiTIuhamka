@@ -127,11 +127,66 @@ class User extends CI_Controller
         $this->roomuser->habiswaktu();
         $data['role'] = $this->db->get('user_booking')->result_array();
 
-        $yangdicari = $this->input->post('yangdicari');
         $data['roomuser'] = $this->roomuser->tampil_room_lantai1()->result();
-        if ($yangdicari != null) {
-            $data['roomuser'] = $this->roomuser->cari($yangdicari);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai1', $data);
+        $this->load->view('templates/footer');
+    }
+    public function cariLantai()
+    {
+        $data['title'] = 'Lantai 1 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $keyname = $this->input->post('keyword_a');
+        // $keytgl = $this->input->post('keyword_b');
+        $keytgl = date('Y-m-d H:i:s', strtotime($this->input->post('keyword_b')));
+        // $keytgl = str_replace([$tgl], "T", " ");
+
+        if ($keyname) {
+            $data['roomuser'] = $this->roomuser->carilantai1($keyname);
+        } else {
+            $data['roomuser'] = $this->db->get('view_lantai1')->result();
+            // $data['roomuser'] = $this->roomuser->tampil_room_lantai1()->result();
         }
+
+
+        // var_dump($data['roomuser']);
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai1', $data);
+        $this->load->view('templates/footer');
+    }
+    public function cariTanggal()
+    {
+        $data['title'] = 'Lantai 1 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $keyname = $this->input->post('keyword_a');
+        // $keytgl = $this->input->post('keyword_b');
+        $keytgl = date('Y-m-d H:i:s', strtotime($this->input->post('keyword_b')));
+        // $keytgl = str_replace([$tgl], "T", " ");
+
+        if ($keytgl) {
+            $data['roomuser'] = $this->roomuser->keywordtanggal($keytgl);;
+        } else {
+            $data['roomuser'] = $this->roomuser->tampil_room_lantai1()->result();
+        }
+
+
+        // var_dump($data['roomuser']);
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -159,6 +214,68 @@ class User extends CI_Controller
         $this->load->view('user/lantai2', $data);
         $this->load->view('templates/footer');
     }
+
+    public function cariLantai2()
+    { {
+            $data['title'] = 'Lantai 2 FT Uhamka';
+            $data['user'] = $this->db->get_where('user', ['email' =>
+            $this->session->userdata('email')])->row_array();
+            $this->roomuser->habiswaktu();
+            $data['role'] = $this->db->get('user_booking')->result_array();
+
+            $keyname = $this->input->post('keyword_a');
+            // $keytgl = $this->input->post('keyword_b');
+            $keytgl = date('Y-m-d H:i:s', strtotime($this->input->post('keyword_b')));
+            // $keytgl = str_replace([$tgl], "T", " ");
+
+            if ($keyname) {
+                $data['roomuser'] = $this->roomuser->carilantai2($keyname);
+            } else {
+                $data['roomuser'] = $this->db->get('view_lantai2')->result();
+            }
+
+
+            // var_dump($data['roomuser']);
+
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('user/lantai2', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function cariTanggal2()
+    {
+        $data['title'] = 'Lantai 2 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $keyname = $this->input->post('keyword_a');
+        // $keytgl = $this->input->post('keyword_b');
+        $keytgl = date('Y-m-d H:i:s', strtotime($this->input->post('keyword_b')));
+        // $keytgl = str_replace([$tgl], "T", " ");
+
+        if ($keytgl) {
+            $data['roomuser'] = $this->roomuser->keywordtanggal($keytgl);;
+        } else {
+            $data['roomuser'] = $this->roomuser->tampil_room_lantai2()->result();
+        }
+
+
+        // var_dump($data['roomuser']);
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai2', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function lantai3()
     {
         $data['title'] = 'Lantai 3 FT Uhamka';
@@ -179,6 +296,65 @@ class User extends CI_Controller
         $this->load->view('user/lantai3', $data);
         $this->load->view('templates/footer');
     }
+
+    public function cariLantai3()
+    { {
+            $data['title'] = 'Lantai 3 FT Uhamka';
+            $data['user'] = $this->db->get_where('user', ['email' =>
+            $this->session->userdata('email')])->row_array();
+            $this->roomuser->habiswaktu();
+            $data['role'] = $this->db->get('user_booking')->result_array();
+
+            $keyname = $this->input->post('keyword_a');
+            // $keytgl = $this->input->post('keyword_b');
+            $keytgl = date('Y-m-d H:i:s', strtotime($this->input->post('keyword_b')));
+            // $keytgl = str_replace([$tgl], "T", " ");
+
+            if ($keyname) {
+                $data['roomuser'] = $this->roomuser->carilantai3($keyname);
+            } else {
+                $data['roomuser'] = $this->db->get('view_lantai3')->result();
+            }
+
+
+            // var_dump($data['roomuser']);
+
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('user/lantai3', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function cariTanggal3()
+    {
+        $data['title'] = 'Lantai 3 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $keyname = $this->input->post('keyword_a');
+        // $keytgl = $this->input->post('keyword_b');
+        $keytgl = date('Y-m-d H:i:s', strtotime($this->input->post('keyword_b')));
+        // $keytgl = str_replace([$tgl], "T", " ");
+
+        if ($keytgl) {
+            $data['roomuser'] = $this->roomuser->keywordtanggal($keytgl);;
+        } else {
+            $data['roomuser'] = $this->roomuser->tampil_room_lantai3()->result();
+        }
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai3', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function lantai4()
     {
         $data['title'] = 'Lantai 4 FT Uhamka';
@@ -199,16 +375,102 @@ class User extends CI_Controller
         $this->load->view('user/lantai4', $data);
         $this->load->view('templates/footer');
     }
-    /*function habiswaktu()
+    public function cariLantai4()
+    { {
+            $data['title'] = 'Lantai 4 FT Uhamka';
+            $data['user'] = $this->db->get_where('user', ['email' =>
+            $this->session->userdata('email')])->row_array();
+            $this->roomuser->habiswaktu();
+            $data['role'] = $this->db->get('user_booking')->result_array();
+
+            $keyname = $this->input->post('keyword_a');
+            // $keytgl = $this->input->post('keyword_b');
+            $keytgl = date('Y-m-d H:i:s', strtotime($this->input->post('keyword_b')));
+            // $keytgl = str_replace([$tgl], "T", " ");
+
+            if ($keyname) {
+                $data['roomuser'] = $this->roomuser->carilantai4($keyname);
+            } else {
+                $data['roomuser'] = $this->db->get('view_lantai4')->result();
+            }
+
+
+            // var_dump($data['roomuser']);
+
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('user/lantai4', $data);
+            $this->load->view('templates/footer');
+        }
+    }
+
+    public function cariTanggal4()
     {
-        $data['title'] = 'Delete Otomatis';
+        $data['title'] = 'Lantai 4 FT Uhamka';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $this->roomuser->habiswaktu();
+        $data['role'] = $this->db->get('user_booking')->result_array();
+
+        $keyname = $this->input->post('keyword_a');
+        // $keytgl = $this->input->post('keyword_b');
+        $keytgl = date('Y-m-d H:i:s', strtotime($this->input->post('keyword_b')));
+        // $keytgl = str_replace([$tgl], "T", " ");
+
+        if ($keytgl) {
+            $data['roomuser'] = $this->roomuser->keywordtanggal($keytgl);;
+        } else {
+            $data['roomuser'] = $this->roomuser->tampil_room_lantai4()->result();
+        }
+
+
+        // var_dump($data['roomuser']);
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('user/lantai4', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function request()
+    {
+
+        $data['title'] = 'Request Peminjaman';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('user/lantai');
+        $this->load->view('user/request');
         $this->load->view('templates/footer');
-    }*/
+    }
+    public function do_upload()
+    {
+        $config['upload_path']   = './uploaded_file/';
+        $config['allowed_types'] = 'doc|docx|xls|xlsx|pdf|zip|rar';
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file_nya')) {
+            $error =  $this->upload->display_errors();
+            $this->session->set_flashdata(
+                'warning',
+                '<div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' .
+                    $error . '</div>'
+            );
+            redirect(base_url('user/request'));
+        } else {
+            $this->session->set_flashdata(
+                'warning',
+                '<div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>File Berhasil diupload</div>'
+            );
+            redirect(base_url('user/request'));
+        }
+    }
 }

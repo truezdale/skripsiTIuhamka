@@ -59,11 +59,11 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <label for="exampleInputEmail1">Jam Mulai</label>
-                                            <input type="datetime-local" name="m_booking_start" class="form-control" value="<?php echo date("Y-m-d\TH:i:s", strtotime($edit->m_booking_start)); ?>">
+                                            <input type="datetime-local" name="m_booking_start" class="form-control" value="<?php echo date("Y-m-d\H:i:s", strtotime($edit->m_booking_start)); ?>">
                                         </div>
                                         <div class="col-sm-8">
                                             <label for="exampleInputPassword1">Jam Selesai</label>
-                                            <input type="datetime-local" name="m_booking_end" class="form-control" value="<?php echo date("Y-m-d\TH:i:s", strtotime($edit->m_booking_end)); ?>">
+                                            <input type="datetime-local" name="m_booking_end" class="form-control" value="<?php echo date("Y-m-d\H:i:s", strtotime($edit->m_booking_end)); ?>">
                                         </div>
                                         <div class="col-sm-8">
                                             <label for="exampleInputEmail1">Agenda</label>

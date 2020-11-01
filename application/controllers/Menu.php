@@ -69,4 +69,18 @@ class Menu extends CI_Controller
             redirect('menu/submenu');
         }
     }
+    public function deletemenu($id)
+    {
+        $this->db->delete('user_menu', ['id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Menu berhasil terhapus! </div>');
+        redirect('menu');
+    }
+    public function deletesubmenu($id)
+    {
+        $this->db->delete('user_sub_menu', ['id' => $id]);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Submenu berhasil terhapus! </div>');
+        redirect('menu/submenu');
+    }
 }

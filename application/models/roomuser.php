@@ -3,7 +3,7 @@
 /**
  * 
  */
-class roomuser extends CI_Model
+class Roomuser extends CI_Model
 {
     function tampil_room_lantai1()
     {
@@ -25,7 +25,7 @@ class roomuser extends CI_Model
     {
         $update = $this->db->query('UPDATE user_booking SET m_booking_start = NULL, m_booking_end = NULL, m_booking_agenda = NULL, m_booking_PIC = NULL where m_booking_end < now()');
     }
-    function cari($yangdicari)
+    function cari($keyname)
     {
         // Lainkali kwnama kelas di model huruf depan harus huruf kapital
         // mau tanya gan.. untuk lantai yg lain caranya sama dgn ini?
@@ -40,12 +40,56 @@ class roomuser extends CI_Model
 
 
         $this->db->from('user_booking');
-        $this->db->like('m_booking_start', $yangdicari);
-        $this->db->or_like('m_booking_end', $yangdicari);
-        $this->db->or_like('m_booking_agenda', $yangdicari);
-        $this->db->or_like('m_booking_PIC', $yangdicari);
-        $this->db->or_like('m_booking_room_name', $yangdicari);
-        $this->db->or_like('lantai', $yangdicari);
+        $this->db->like('m_booking_start', $keyname);
+        $this->db->or_like('m_booking_end', $keyname);
+        $this->db->or_like('m_booking_agenda', $keyname);
+        $this->db->or_like('m_booking_PIC', $keyname);
+        $this->db->or_like('m_booking_room_name', $keyname);
+        $this->db->or_like('lantai', $keyname);
+        return $this->db->get()->result();
+    }
+
+    function carilantai1($yangdicari)
+    {
+        $this->db->select('*');
+        $this->db->from('view_lantai1');
+        // $this->db->like('m_booking_agenda', $yangdicari);
+        // $this->db->like('m_booking_PIC', $yangdicari);
+        $this->db->like('m_booking_room_name', $yangdicari);
+        return $this->db->get()->result();
+    }
+    function carilantai2($yangdicari)
+    {
+        $this->db->select('*');
+        $this->db->from('view_lantai2');
+        // $this->db->like('m_booking_agenda', $yangdicari);
+        // $this->db->like('m_booking_PIC', $yangdicari);
+        $this->db->like('m_booking_room_name', $yangdicari);
+        return $this->db->get()->result();
+    }
+    function carilantai3($yangdicari)
+    {
+        $this->db->select('*');
+        $this->db->from('view_lantai3');
+        // $this->db->like('m_booking_agenda', $yangdicari);
+        // $this->db->like('m_booking_PIC', $yangdicari);
+        $this->db->like('m_booking_room_name', $yangdicari);
+        return $this->db->get()->result();
+    }
+    function carilantai4($yangdicari)
+    {
+        $this->db->select('*');
+        $this->db->from('view_lantai4');
+        // $this->db->like('m_booking_agenda', $yangdicari);
+        // $this->db->like('m_booking_PIC', $yangdicari);
+        $this->db->like('m_booking_room_name', $yangdicari);
+        return $this->db->get()->result();
+    }
+    function keywordtanggal($keytgl)
+    {
+        $this->db->from('user_booking');
+        $this->db->like('m_booking_start', $keytgl);
+        // $this->db->like('m_booking_end', $keytgl);
         return $this->db->get()->result();
     }
 }

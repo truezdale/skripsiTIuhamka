@@ -84,10 +84,12 @@ class admin extends CI_Controller
         $data['title'] = 'Lantai 1 FT Uhamka';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        //$this->room->habiswaktu();
+        // $this->room->habiswaktu();
 
         $data1['room'] = $this->room->tampil_room_lantai1()->result();
         $data['role'] = $this->db->get('user_booking')->result_array();
+
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -117,7 +119,7 @@ class admin extends CI_Controller
         $data['title'] = 'Lantai 3 FT Uhamka';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        //$this->room->habiswaktu();
+        // $this->room->habiswaktu();
 
         $data3['room'] = $this->room->tampil_room_lantai3()->result();
         $data['role'] = $this->db->get('user_booking')->result_array();
@@ -149,6 +151,7 @@ class admin extends CI_Controller
 
     function addbooking($m_booking_id)
     {
+
         $data['title'] = 'Tambah Booking';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
@@ -417,5 +420,77 @@ class admin extends CI_Controller
 
         $this->room->editruangproses($where, $data, 'user_booking');
         redirect(base_url('admin/lantai' . $lantai));
+    }
+
+    ///////////////////////krimpdf/////////////////////////////////
+    public function ceksurat()
+    {
+
+        $data['title'] = ' Cek Surat';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $list_file = array();
+        $dir = "uploaded_file/";
+
+        // buka directory, dan baca isinya
+        if (is_dir($dir)) {
+            if ($dh = opendir($dir)) {
+                while (($file = readdir($dh)) !== false) {
+                    $list_file[] = $file;
+                }
+                closedir($dh);
+            }
+        }
+
+        $data['daftar_file'] = $list_file;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/terimarequest', $data);
+        $this->load->view('templates/footer');
+    }
+
+
+    public function form()
+    {
+        $data['page'] = 'form_upload';
+        $this->load->view('admin', $data);
+    }
+
+    public function do_upload()
+    {
+        $config['upload_path']   = './uploaded_file/';
+        $config['allowed_types'] = 'doc|docx|xls|xlsx|pdf|zip|rar';
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file_nya')) {
+            $data['error_upload'] = array('error' => $this->upload->display_errors());
+            $this->session->set_userdata(
+                'status_upload',
+                '<div class="alert alert-warning alert-dismissible" role="alert">
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' .
+                    $data['error_upload']['error'] . '</div>'
+            );
+        } else {
+            $this->session->set_userdata('status_upload', '<div class="alert alert-success alert-dismissible" role="alert">
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+															File berhasil diupload
+															</div>');
+        }
+
+        redirect(base_url('user/request'));
+    }
+
+    public function hapuspdf($filenya)
+    {
+        $dir   = './uploaded_file/';
+        if (unlink($dir . $filenya)) {
+            $this->session->set_userdata('status_hapus', '<div class="alert alert-success alert-dismissible" role="alert">
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+															File berhasil dihapus</div>');
+        }
+        redirect(base_url('admin/ceksurat'));
     }
 }

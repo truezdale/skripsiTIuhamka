@@ -48,6 +48,12 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets'); ?>/js/sb-admin-2.min.js"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(function() {
+        $("#tanggal").hide();
+    });
+</script>
 <script>
     $('.custom-file-input').on('change', function() {
         let fileName = $(this).val().split('\\').pop();
@@ -70,7 +76,54 @@
             }
         });
     });
+
+    $("#keywordRuangan").on('click', function() {
+        // $("#keywordTime").hide();
+        $("#ruangan").show();
+        $("#tanggal").hide();
+        console.log('Ruangan');
+
+    });
+    $("#keywordTanggal").on('click', function() {
+        $("#tanggal").show();
+        $("#ruangan").hide();
+        // $("#ruangan").show();
+
+        console.log('Tanggal');
+
+    });
 </script>
+
+<!-- <script>
+    $("#from1").on('click', function(e) {
+        e.preventDefault();
+        swal({
+            timer: 3000,
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success",
+        });
+
+
+        // console.log('Berhasil');
+    });
+</script> -->
+
+<!-- <script>
+    $(document).ready(function() {
+        // const flash = $('.flash-data').data('alert');
+        $('.btn-upload').on('click', function() {
+            // e.preventDefault();
+            swal({
+                title: "File Sudah Diunggah!",
+                text: "Berhasil Diupload",
+                icon: "success",
+            });
+
+            console.log('berhasil');
+        });
+    });
+</script> -->
 
 </body>
 
